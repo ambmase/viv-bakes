@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vivian — Artisan Baker</title>
+  <title>Vivian Bakes — Artisan Baker</title>
   <meta name="description" content="Handcrafted breads, pastries, and celebration cakes by Vivian." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 <body>
 
   <!-- Navigation -->
   <nav>
     <div class="nav-inner">
-      <span class="nav-logo">Vivian</span>
+      <span class="nav-logo">Vivian Bakes</span>
       <ul class="nav-links">
         <li><a href="#gallery">Work</a></li>
         <li><a href="#about">About</a></li>
@@ -37,33 +38,33 @@
       <h2 class="section-title">The Work</h2>
       <div class="gallery-grid">
 
-        <div class="gallery-item">
+        <a href="images/cake-1.webp" class="glightbox gallery-item">
           <img src="images/cake-1.webp" alt="Cake" loading="lazy" />
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="images/cake-2.webp" class="glightbox gallery-item">
           <img src="images/cake-2.webp" alt="Cake" loading="lazy" />
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="images/cake-3.webp" class="glightbox gallery-item">
           <img src="images/cake-3.webp" alt="Cake" loading="lazy" />
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="images/cake-4.webp" class="glightbox gallery-item">
           <img src="images/cake-4.webp" alt="Cake" loading="lazy" />
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="images/cake-5.webp" class="glightbox gallery-item">
           <img src="images/cake-5.webp" alt="Cake" loading="lazy" />
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="images/cake-6.webp" class="glightbox gallery-item">
           <img src="images/cake-6.webp" alt="Cake" loading="lazy" />
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="images/cake-7.webp" class="glightbox gallery-item">
           <img src="images/cake-7.webp" alt="Cake" loading="lazy" />
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="images/cake-8.webp" class="glightbox gallery-item">
           <img src="images/cake-8.webp" alt="Cake" loading="lazy" />
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="images/cake-9.webp" class="glightbox gallery-item">
           <img src="images/cake-9.webp" alt="Cake" loading="lazy" />
-        </div>
+        </a>
 
       </div>
     </div>
@@ -114,8 +115,10 @@
     <p>&copy; <span id="year"></span> Vivian. All rights reserved.</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    GLightbox();
   </script>
 
 </body>
