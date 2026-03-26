@@ -18,6 +18,11 @@
   <nav>
     <div class="nav-inner">
       <span class="nav-logo">Vivian Bakes</span>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="#gallery">Work</a></li>
         <li><a href="#about">About</a></li>
@@ -33,7 +38,7 @@
   </header>
 
   <!-- Gallery -->
-  <section id="gallery">
+  <section id="gallery" class="fade-in">
     <div class="section-inner">
       <p class="section-label">Portfolio</p>
       <h2 class="section-title">The Work</h2>
@@ -72,7 +77,7 @@
   </section>
 
   <!-- About -->
-  <section id="about">
+  <section id="about" class="fade-in">
     <div class="about-inner">
       <div class="about-image">
         <img src="images/portrait.webp" alt="Vivian" />
@@ -98,7 +103,7 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact">
+  <section id="contact" class="fade-in">
     <div class="section-inner">
       <p class="section-label">Get in Touch</p>
       <h2 class="section-title">Let's make something together.</h2>
@@ -106,8 +111,7 @@
         Custom orders, event inquiries, or just want to say hello —
         I'd love to hear from you.
       </p>
-      <!-- Replace with Vivian's actual email address -->
-      <a class="btn" href="mailto:hello@vivbakes.com">Send me an email</a>
+      <a class="btn" href="mailto:vivipuva@gmail.com">Send me an email</a>
     </div>
   </section>
 
@@ -120,6 +124,26 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     GLightbox();
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Mobile menu toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      links.classList.toggle('open');
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        links.classList.remove('open');
+      });
+    });
   </script>
 
 </body>
