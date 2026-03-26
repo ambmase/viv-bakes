@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivian — Artisan Baker</title>
+  <meta name="description" content="Handcrafted breads, pastries, and celebration cakes by Vivian." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">Vivian</span>
+      <ul class="nav-links">
+        <li><a href="#gallery">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1>Baked with intention,<br>shared with love.</h1>
+    <p>Artisan breads, pastries, and celebration cakes made by hand in small batches.</p>
+  </header>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="section-inner">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">The Work</h2>
+      <div class="gallery-grid">
+
+        <!-- Replace src with your actual image filenames in images/ -->
+        <div class="gallery-item">
+          <img src="images/photo-1.webp" alt="Sourdough loaf with a scored crust" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo-2.webp" alt="Flaky croissants on a wire rack" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo-3.webp" alt="Celebration layer cake with buttercream frosting" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo-4.webp" alt="Cinnamon rolls fresh from the oven" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo-5.webp" alt="Assorted fruit tarts" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo-6.webp" alt="Rustic focaccia with rosemary and sea salt" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo-7.webp" alt="Chocolate babka, sliced to show swirl" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo-8.webp" alt="Macarons in pastel colors" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo-9.webp" alt="Baguettes cooling on a rack" loading="lazy" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-image">
+        <!-- Replace with a photo of Vivian -->
+        <img src="images/vivian.webp" alt="Vivian in her bakery" />
+      </div>
+      <div class="about-text">
+        <p class="section-label">About</p>
+        <h2 class="section-title">Hi, I'm Vivian.</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. I've been baking since I was tall
+          enough to reach the counter — and I haven't stopped since.
+        </p>
+        <p>
+          My focus is on slow, intentional baking: long ferments, seasonal ingredients,
+          and recipes that have been earned through repetition. Whether it's a simple
+          sourdough or an elaborate wedding cake, every piece gets the same care.
+        </p>
+        <p>
+          Based in [City]. Available for custom orders, events, and collaborations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Let's make something together.</h2>
+      <p>
+        Custom orders, event inquiries, or just want to say hello —
+        I'd love to hear from you.
+      </p>
+      <!-- Replace with Vivian's actual email address -->
+      <a class="btn" href="mailto:hello@vivbakes.com">Send me an email</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> Vivian. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
