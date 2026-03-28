@@ -3,14 +3,22 @@
    =========================== */
 
 :root {
-  --color-bg: #fafaf8;
-  --color-surface: #ffffff;
-  --color-text: #1a1a1a;
-  --color-text-muted: #6b6b6b;
-  --color-accent: #c8956c;
-  --color-border: #e8e8e4;
+  --color-bg: #f6f3ee;
+  --color-surface: #faf8f5;
+  --color-text: #2c2a27;
+  --color-text-muted: #7a7571;
+  --color-accent: #c08b8e;
+  --color-accent-warm: #cb9b7a;
+  --color-sage: #ccd1c5;
+  --color-sage-light: #e5e8e0;
+  --color-blue: #c5d5e4;
+  --color-blue-light: #dfe9f0;
+  --color-pink: #f2d5d5;
+  --color-pink-light: #f8e8e8;
+  --color-border: #ddd9d2;
   --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Lora', Georgia, serif;
+  --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
   --max-width: 1100px;
   --spacing-section: 112px;
 }
@@ -39,9 +47,8 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(250, 250, 248, 0.9);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-pink);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .nav-inner {
@@ -58,6 +65,7 @@ nav {
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.01em;
+  color: var(--color-text);
 }
 
 .nav-links {
@@ -67,6 +75,7 @@ nav {
 }
 
 .nav-links a {
+  font-family: var(--font-ui);
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-text-muted);
@@ -84,8 +93,9 @@ nav {
 .hero {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 120px 32px 80px;
+  padding: 56px 32px 40px;
   text-align: center;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .hero h1 {
@@ -109,7 +119,7 @@ nav {
    =========================== */
 
 #gallery {
-  padding: var(--spacing-section) 32px;
+  padding: 56px 32px var(--spacing-section);
 }
 
 .section-inner {
@@ -118,6 +128,7 @@ nav {
 }
 
 .section-label {
+  font-family: var(--font-ui);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -148,12 +159,12 @@ nav {
   background: var(--color-border);
   cursor: pointer;
   position: relative;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.3s ease;
 }
 
 .gallery-item:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
 .gallery-item img {
@@ -186,7 +197,7 @@ nav {
 
 #about {
   padding: var(--spacing-section) 32px;
-  background: var(--color-surface);
+  background: var(--color-pink-light);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -218,6 +229,7 @@ nav {
 }
 
 .about-text p {
+  font-family: var(--font-ui);
   color: var(--color-text-muted);
   margin-bottom: 16px;
   font-size: 1.0625rem;
@@ -230,7 +242,7 @@ nav {
 #contact {
   padding: var(--spacing-section) 32px;
   text-align: center;
-  background: #f5ebe0;
+  background: var(--color-sage-light);
   border-top: 1px solid var(--color-border);
 }
 
@@ -253,6 +265,7 @@ nav {
   padding: 14px 36px;
   background: var(--color-text);
   color: var(--color-bg);
+  font-family: var(--font-ui);
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -262,7 +275,7 @@ nav {
 }
 
 .btn:hover {
-  background: var(--color-accent);
+  background: var(--color-accent-warm);
   transform: translateY(-1px);
 }
 
@@ -275,6 +288,7 @@ footer {
   padding: 32px;
   text-align: center;
   color: var(--color-text-muted);
+  font-family: var(--font-ui);
   font-size: 0.875rem;
 }
 
@@ -341,7 +355,7 @@ footer {
     right: 0;
     flex-direction: column;
     gap: 0;
-    background: rgba(250, 250, 248, 0.97);
+    background: rgba(242, 213, 213, 0.97);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-border);
     padding: 16px 32px;
