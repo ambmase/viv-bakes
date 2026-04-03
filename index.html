@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Vivian Bakes — Artisan Baker</title>
-  <meta name="description" content="Handcrafted breads, pastries, and celebration cakes by Vivian." />
+  <meta name="description" content="Handcrafted celebration cakes, cupcakes, and confections by Vivian. Fine art meets baking in London, Ontario." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,400;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
@@ -38,62 +38,118 @@
 
     <!-- Hero -->
     <header class="hero">
-      <h1>Custom confectionary creations,<br>crafted with love.</h1>
-      <a href="#gallery" class="btn">View My Work</a>
-    </header>
-
-    <!-- Gallery Preview -->
-    <section id="gallery" class="fade-in">
-      <div class="section-inner">
-        <p class="section-label">Portfolio</p>
-        <h2 class="section-title">The Work</h2>
-        <div class="gallery-featured">
-
-          <a href="images/strawberry-cupcakes.webp" class="glightbox gallery-feature">
-            <img src="images/strawberry-cupcakes.webp" alt="Strawberry cupcakes" width="1200" height="1200" loading="lazy" />
-          </a>
-          <a href="images/elephant-cake.webp" class="glightbox gallery-feature">
-            <img src="images/elephant-cake.webp" alt="Elephant cake" width="1200" height="1200" loading="lazy" />
-          </a>
-
+      <div class="hero-inner">
+        <div class="hero-text fade-in">
+          <h1>Custom confectionary creations, crafted with love.</h1>
+          <p class="hero-tagline">Fine art meets baking — celebration cakes, cupcakes, and sweet creations made to bring your vision to life.</p>
+          <a href="portfolio.html" class="btn">View My Work</a>
         </div>
-        <div class="gallery-cta">
-          <a href="portfolio.html" class="btn">View All Work</a>
+        <div class="hero-images">
+          <div class="hero-card">
+            <img src="images/sailormoon-cake.webp" alt="Sailor Moon themed cake with fondant figure" width="1200" height="1200" style="object-position: center 30%;" />
+          </div>
+          <div class="hero-card">
+            <img src="images/naked-cake.webp" alt="Naked wedding cake with fresh flowers" width="1200" height="1200" />
+          </div>
+          <div class="hero-card">
+            <img src="images/strawberry-cupcakes.webp" alt="Strawberry cupcakes with pink frosting" width="1200" height="1200" />
+          </div>
         </div>
       </div>
-    </section>
+    </header>
 
-    <!-- About Teaser -->
-    <section id="about" class="fade-in">
-      <div class="about-inner">
-        <div class="about-image">
-          <img src="images/portrait.webp" alt="Portrait of Vivian" width="960" height="1280" />
-        </div>
-        <div class="about-text">
-          <p class="section-label">About</p>
-          <h2 class="section-title">Hi, I'm Vivian.</h2>
-          <p>
-            Your celebration is one&#8209;of&#8209;a&#8209;kind; I consider it my responsibility to help bring your confectionary vision to life with the utmost gratitude, care and creativity.
-          </p>
-          <div class="about-cta">
-            <a href="about.html" class="btn">Read My Story</a>
+    <!-- Scallop divider -->
+    <div class="scallop-divider scallop-divider--from-hero" aria-hidden="true"></div>
+
+    <!-- Categories -->
+    <section class="categories fade-in">
+      <div class="section-inner">
+        <p class="section-label">What I Create</p>
+        <h2 class="section-title">Something for every celebration</h2>
+        <div class="categories-grid">
+          <div class="category-card">
+            <div class="category-card-image">
+              <img src="images/naked-cake.webp" alt="Elegant naked cake with fresh flowers" width="1200" height="1200" loading="lazy" decoding="async" />
+            </div>
+            <div class="category-card-body">
+              <h3>Celebration Cakes</h3>
+              <p>Custom cakes for weddings, birthdays, anniversaries, and every milestone worth celebrating.</p>
+            </div>
+          </div>
+          <div class="category-card">
+            <div class="category-card-image">
+              <img src="images/ladybug-cupcakes.webp" alt="Decorated cupcakes with rose frosting" width="960" height="1280" loading="lazy" decoding="async" />
+            </div>
+            <div class="category-card-body">
+              <h3>Cupcakes &amp; Treats</h3>
+              <p>From classic buttercream swirls to themed toppers — perfect for parties and personal indulgence.</p>
+            </div>
+          </div>
+          <div class="category-card">
+            <div class="category-card-image">
+              <img src="images/sailormoon-cake.webp" alt="Sailor Moon character cake with fondant details" width="1200" height="1200" loading="lazy" decoding="async" style="object-position: center 20%;" />
+            </div>
+            <div class="category-card-body">
+              <h3>Character &amp; Theme</h3>
+              <p>Bring your favourite characters to life in fondant and buttercream — anime, cartoons, and beyond.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Teaser -->
-    <section id="contact" class="fade-in">
+    <!-- Featured Work -->
+    <section class="featured-work fade-in">
+      <div class="section-inner">
+        <p class="section-label">Portfolio</p>
+        <h2 class="section-title">Recent favourites</h2>
+        <div class="bento-grid">
+          <a href="images/elephant-cake.webp" class="glightbox bento-item">
+            <img src="images/elephant-cake.webp" alt="Elephant cake with fondant figure and balloons" width="1200" height="1200" loading="lazy" decoding="async" />
+          </a>
+          <a href="images/hazelnut-cake.webp" class="glightbox bento-item">
+            <img src="images/hazelnut-cake.webp" alt="Hazelnut cake with chocolate drip" width="1053" height="1280" loading="lazy" decoding="async" />
+          </a>
+          <a href="images/grinch-cake-1.webp" class="glightbox bento-item">
+            <img src="images/grinch-cake-1.webp" alt="Grinch themed Christmas cake" width="1200" height="1200" loading="lazy" decoding="async" />
+          </a>
+          <a href="images/chocolate-birthday-cake.webp" class="glightbox bento-item">
+            <img src="images/chocolate-birthday-cake.webp" alt="Chocolate birthday cake with flowers" width="1200" height="1200" loading="lazy" decoding="async" />
+          </a>
+          <a href="images/cinnamon-cupcake.webp" class="glightbox bento-item bento-item--wide">
+            <img src="images/cinnamon-cupcake.webp" alt="Cinnamon cupcake with swirled frosting" width="1200" height="1200" loading="lazy" decoding="async" />
+          </a>
+        </div>
+        <div class="featured-cta">
+          <a href="portfolio.html" class="btn--outline btn">View All Work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Teaser -->
+    <section class="about-teaser fade-in">
+      <div class="about-teaser-inner">
+        <div class="about-portrait">
+          <img src="images/portrait.webp" alt="Portrait of Vivian" width="960" height="1280" loading="lazy" decoding="async" />
+        </div>
+        <div class="about-teaser-text">
+          <p class="section-label">About</p>
+          <h2 class="section-title">Hi, I'm Vivian.</h2>
+          <p>
+            Fine art graduate turned cake artist. Your celebration is one&#8209;of&#8209;a&#8209;kind — I bring your confectionary vision to life with care, creativity, and a whole lot of buttercream.
+          </p>
+          <a href="about.html" class="btn--outline btn">Read My Story</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta fade-in">
       <div class="section-inner">
         <p class="section-label">Get in Touch</p>
-        <h2 class="section-title">Let's make something together.</h2>
-        <p>
-          Custom orders, event inquiries, or just want to say hello &mdash;
-          I'd love to hear from you.
-        </p>
-        <div class="gallery-cta">
-          <a href="contact.html" class="btn">Contact Me</a>
-        </div>
+        <h2 class="section-title">Ready to celebrate?</h2>
+        <p>Custom orders, event inquiries, or just want to say hello — I'd love to hear from you.</p>
+        <a href="contact.html" class="btn">Contact Me</a>
       </div>
     </section>
 
@@ -103,6 +159,11 @@
   <footer>
     <p>&copy; <span id="year"></span> Vivian Bakes.</p>
   </footer>
+
+  <!-- Sticky contact bar (mobile) -->
+  <div class="sticky-contact" aria-label="Quick contact">
+    <a href="contact.html" class="btn">Get in Touch</a>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
   <script src="js/main.js" defer></script>
