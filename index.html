@@ -6,6 +6,7 @@
 
   <title>Vivian Bakes — Artisan Baker</title>
   <meta name="description" content="Handcrafted breads, pastries, and celebration cakes by Vivian." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
@@ -14,136 +15,97 @@
 </head>
 <body>
 
+  <a href="#content" class="skip-link">Skip to content</a>
+
   <!-- Navigation -->
-  <nav>
+  <nav aria-label="Main navigation">
     <div class="nav-inner">
-      <span class="nav-logo">Vivian Bakes</span>
+      <a href="index.html" class="nav-logo">Vivian Bakes</a>
       <button class="nav-toggle" aria-label="Toggle menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
       <ul class="nav-links">
-        <li><a href="#gallery">Work</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="hero">
-    <h1>Custom confectionary creations,<br>crafted with love.</h1>
-    <!-- <p>Artisanal cakes and baked goods.</p> -->
-  </header>
+  <main id="content">
 
-  <!-- Gallery -->
-  <section id="gallery" class="fade-in">
-    <div class="section-inner">
-      <p class="section-label">Portfolio</p>
-      <h2 class="section-title">The Work</h2>
-      <div class="gallery-grid">
+    <!-- Hero -->
+    <header class="hero">
+      <h1>Custom confectionary creations,<br>crafted with love.</h1>
+      <a href="#gallery" class="btn">View My Work</a>
+    </header>
 
-        <a href="images/cake-1.webp" class="glightbox gallery-item">
-          <img src="images/cake-1.webp" alt="Cake" loading="lazy" />
-        </a>
-        <a href="images/cake-2.webp" class="glightbox gallery-item">
-          <img src="images/cake-2.webp" alt="Cake" loading="lazy" />
-        </a>
-        <a href="images/cake-3.webp" class="glightbox gallery-item">
-          <img src="images/cake-3.webp" alt="Cake" loading="lazy" />
-        </a>
-        <a href="images/cake-4.webp" class="glightbox gallery-item">
-          <img src="images/cake-4.webp" alt="Cake" loading="lazy" />
-        </a>
-        <a href="images/cake-5.webp" class="glightbox gallery-item">
-          <img src="images/cake-5.webp" alt="Cake" loading="lazy" />
-        </a>
-        <a href="images/cake-6.webp" class="glightbox gallery-item">
-          <img src="images/cake-6.webp" alt="Cake" loading="lazy" />
-        </a>
-        <a href="images/cake-7.webp" class="glightbox gallery-item">
-          <img src="images/cake-7.webp" alt="Cake" loading="lazy" />
-        </a>
-        <a href="images/cake-8.webp" class="glightbox gallery-item">
-          <img src="images/cake-8.webp" alt="Cake" loading="lazy" />
-        </a>
-        <a href="images/cake-9.webp" class="glightbox gallery-item">
-          <img src="images/cake-9.webp" alt="Cake" loading="lazy" />
-        </a>
+    <!-- Gallery Preview -->
+    <section id="gallery" class="fade-in">
+      <div class="section-inner">
+        <p class="section-label">Portfolio</p>
+        <h2 class="section-title">The Work</h2>
+        <div class="gallery-featured">
 
+          <a href="images/strawberry-cupcakes.webp" class="glightbox gallery-feature">
+            <img src="images/strawberry-cupcakes.webp" alt="Strawberry cupcakes" width="1200" height="1200" loading="lazy" />
+          </a>
+          <a href="images/elephant-cake.webp" class="glightbox gallery-feature">
+            <img src="images/elephant-cake.webp" alt="Elephant cake" width="1200" height="1200" loading="lazy" />
+          </a>
+
+        </div>
+        <div class="gallery-cta">
+          <a href="portfolio.html" class="btn">View All Work</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- About -->
-  <section id="about" class="fade-in">
-    <div class="about-inner">
-      <div class="about-image">
-        <img src="images/portrait.webp" alt="Vivian" />
+    <!-- About Teaser -->
+    <section id="about" class="fade-in">
+      <div class="about-inner">
+        <div class="about-image">
+          <img src="images/portrait.webp" alt="Portrait of Vivian" width="960" height="1280" />
+        </div>
+        <div class="about-text">
+          <p class="section-label">About</p>
+          <h2 class="section-title">Hi, I'm Vivian.</h2>
+          <p>
+            Your celebration is one&#8209;of&#8209;a&#8209;kind; I consider it my responsibility to help bring your confectionary vision to life with the utmost gratitude, care and creativity.
+          </p>
+          <div class="about-cta">
+            <a href="about.html" class="btn">Read My Story</a>
+          </div>
+        </div>
       </div>
-      <div class="about-text">
-        <p class="section-label">About</p>
-        <h2 class="section-title">Hi, I'm Vivian.</h2>
-        <p>
-          Your celebration is one&#8209;of&#8209;a&#8209;kind; I consider it my responsibility to help bring your confectionary vision to life with the utmost gratitude, care and creativity.
-        </p>
-        <p>
-          I was born in 1998, moving around a few times before settling in London, Ontario. Throughout my life, art has been the primary outlet for my creativity and curiosity. By the time I started high school I had already explored many mediums: watercolour, acrylic, pastels, clay, charcoal, wax, ink &ndash; you name it! I continued to sharpen my skills and explore new techniques by studying art at Western University. While in school I worked as a part-time cake maker at my local bakery, Angelo's Italian Bakery and Market. While working at Angelo's I was able to combine my passion for art and baking. By the time I graduated I had over 6 years of experience as the primary cake maker and decorator, and the honour of preparing hundreds of cakes for weddings and other celebrations.
-        </p>
-        <p>
-          In 2025 I decided to start my own business as a fine art cake maker. Each piece is a reflection of my commitment to creating something deeply personal and memorable for you, in my authentic style.
-        </p>
-        <p>
-          The cornerstone of my creative designs are buttercream and fondant. These materials allow me to make the most of my love for realism and animation. I strive to create pieces that will be a delicious and memorable part of your celebration!
-        </p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="fade-in">
-    <div class="section-inner">
-      <p class="section-label">Get in Touch</p>
-      <h2 class="section-title">Let's make something together.</h2>
-      <p>
-        Custom orders, event inquiries, or just want to say hello —
-        I'd love to hear from you.
-      </p>
-      <a class="btn" href="mailto:vivipuva@gmail.com">Send me an email</a>
-    </div>
-  </section>
+    <!-- Contact Teaser -->
+    <section id="contact" class="fade-in">
+      <div class="section-inner">
+        <p class="section-label">Get in Touch</p>
+        <h2 class="section-title">Let's make something together.</h2>
+        <p>
+          Custom orders, event inquiries, or just want to say hello &mdash;
+          I'd love to hear from you.
+        </p>
+        <div class="gallery-cta">
+          <a href="contact.html" class="btn">Contact Me</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- Footer -->
   <footer>
     <p>&copy; <span id="year"></span> Vivian Bakes.</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    GLightbox();
-
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Mobile menu toggle
-    const toggle = document.querySelector('.nav-toggle');
-    const links = document.querySelector('.nav-links');
-    toggle.addEventListener('click', () => {
-      toggle.classList.toggle('open');
-      links.classList.toggle('open');
-    });
-    links.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        toggle.classList.remove('open');
-        links.classList.remove('open');
-      });
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>

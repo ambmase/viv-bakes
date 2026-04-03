@@ -23,9 +23,27 @@
   --spacing-section: 112px;
 }
 
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 200;
+  padding: 8px 16px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  border-radius: 2px;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
 /* Reset */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 
 /* Base */
@@ -47,7 +65,9 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--color-pink);
+  background: rgba(246, 243, 238, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -84,7 +104,8 @@ nav {
   transition: color 0.2s;
 }
 
-.nav-links a:hover { color: var(--color-text); }
+.nav-links a:hover,
+.nav-links a.active { color: var(--color-text); }
 
 /* ===========================
    Hero
@@ -104,14 +125,32 @@ nav {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
+  color: var(--color-text);
 }
 
-.hero p {
-  font-size: 1.125rem;
-  color: var(--color-text-muted);
-  max-width: 480px;
+.hero .btn {
+  margin-bottom: 8px;
+}
+
+/* ===========================
+   Page Header (portfolio, etc.)
+   =========================== */
+
+.page-header {
+  max-width: var(--max-width);
   margin: 0 auto;
+  padding: 64px 32px 48px;
+  text-align: center;
+}
+
+.page-header .section-title {
+  margin-bottom: 12px;
+}
+
+.page-subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
 }
 
 /* ===========================
@@ -119,7 +158,8 @@ nav {
    =========================== */
 
 #gallery {
-  padding: 56px 32px var(--spacing-section);
+  padding: 80px 32px var(--spacing-section);
+  background: var(--color-bg);
 }
 
 .section-inner {
@@ -191,15 +231,63 @@ nav {
   background: rgba(0, 0, 0, 0.15);
 }
 
+/* Featured gallery (landing page) */
+.gallery-featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.gallery-feature {
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--color-border);
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.gallery-feature:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.25);
+}
+
+.gallery-feature img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-feature:hover img {
+  transform: scale(1.03);
+}
+
+.gallery-feature::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-feature:hover::after {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.gallery-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
 /* ===========================
    About
    =========================== */
 
 #about {
   padding: var(--spacing-section) 32px;
-  background: var(--color-pink-light);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
 }
 
 .about-inner {
@@ -216,6 +304,7 @@ nav {
   overflow: hidden;
   background: var(--color-border);
   aspect-ratio: 3 / 4;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
 }
 
 .about-image img {
@@ -242,24 +331,29 @@ nav {
 #contact {
   padding: var(--spacing-section) 32px;
   text-align: center;
-  background: var(--color-sage-light);
+  background: var(--color-surface);
   border-top: 1px solid var(--color-border);
 }
 
 #contact .section-inner {
-  max-width: 560px;
+  max-width: 600px;
+}
+
+#contact .section-label {
+  margin-bottom: 8px;
 }
 
 #contact .section-title {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 #contact p {
   color: var(--color-text-muted);
-  margin-bottom: 36px;
+  margin-bottom: 8px;
   font-size: 1.0625rem;
 }
 
+/* Buttons */
 .btn {
   display: inline-block;
   padding: 14px 36px;
@@ -270,13 +364,144 @@ nav {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  border: none;
   border-radius: 2px;
+  cursor: pointer;
   transition: background 0.2s, transform 0.1s;
 }
 
 .btn:hover {
-  background: var(--color-accent-warm);
+  background: var(--color-accent);
   transform: translateY(-1px);
+}
+
+/* Contact Form */
+#contact-form {
+  text-align: left;
+  margin-top: 28px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.form-group label .optional {
+  font-weight: 400;
+  text-transform: none;
+  color: var(--color-text-muted);
+  letter-spacing: 0;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: var(--font-ui);
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7571' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-color: #fff;
+  padding-right: 40px;
+}
+
+#contact-form .btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* ===========================
+   About Page
+   =========================== */
+
+.about-page {
+  padding: 0 32px var(--spacing-section);
+}
+
+.about-page-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-page .about-image {
+  position: sticky;
+  top: 100px;
+}
+
+.about-page .about-text p {
+  font-family: var(--font-ui);
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.about-cta {
+  margin-top: 40px;
+}
+
+/* ===========================
+   Contact Page
+   =========================== */
+
+.contact-page {
+  padding: 0 32px var(--spacing-section);
+}
+
+.contact-page-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.contact-page .btn {
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 
 /* ===========================
@@ -290,19 +515,20 @@ footer {
   color: var(--color-text-muted);
   font-family: var(--font-ui);
   font-size: 0.875rem;
+  background: var(--color-bg);
 }
 
 /* ===========================
    Fade-in on scroll
    =========================== */
 
-.fade-in {
+.js .fade-in {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.fade-in.visible {
+.js .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -355,7 +581,7 @@ footer {
     right: 0;
     flex-direction: column;
     gap: 0;
-    background: rgba(242, 213, 213, 0.97);
+    background: rgba(246, 243, 238, 0.97);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-border);
     padding: 16px 32px;
@@ -367,14 +593,32 @@ footer {
 
   .gallery-grid { column-count: 2; }
 
+  .gallery-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
   .about-inner {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
+  .about-page-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-page .about-image {
+    position: static;
+  }
+
   .about-image {
     aspect-ratio: auto;
   }
+
 }
 
 @media (max-width: 480px) {
