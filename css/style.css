@@ -500,16 +500,16 @@ nav {
 .bento-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 280px;
   gap: 16px;
 }
 
 .bento-item {
-  display: flex;
+  display: block;
+  position: relative;
+  aspect-ratio: 1;
   border-radius: var(--radius);
   overflow: hidden;
   background: #fff;
-  padding: 6px;
   box-shadow: var(--shadow-card);
   cursor: pointer;
   transition: transform 0.35s var(--transition-bounce),
@@ -522,9 +522,10 @@ nav {
 }
 
 .bento-item img {
-  width: 100%;
-  flex: 1;
-  min-height: 0;
+  position: absolute;
+  inset: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
   border-radius: var(--radius-sm);
   object-fit: cover;
   transition: transform 0.5s var(--transition-smooth);
@@ -1074,15 +1075,11 @@ footer {
 
   .bento-grid {
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 320px;
     gap: 24px;
   }
 
   .bento-item--wide {
     grid-column: span 2;
-  }
-
-  .bento-item--wide img {
     aspect-ratio: 2 / 1;
   }
 
