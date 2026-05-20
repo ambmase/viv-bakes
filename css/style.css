@@ -663,14 +663,13 @@ nav {
 .gallery-grid {
   max-width: var(--max-width);
   margin: 0 auto;
-  column-count: 2;
-  column-gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .gallery-item {
   display: block;
-  break-inside: avoid;
-  margin-bottom: 16px;
   overflow: hidden;
   border-radius: var(--radius);
   background: #fff;
@@ -688,6 +687,8 @@ nav {
 
 .gallery-item img {
   width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   display: block;
   border-radius: var(--radius-sm);
   transition: transform 0.5s var(--transition-smooth);
@@ -977,7 +978,7 @@ footer {
     gap: 20px;
   }
 
-  .gallery-grid { column-count: 2; column-gap: 20px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
   .form-row {
     grid-template-columns: 1fr 1fr;
@@ -1083,7 +1084,7 @@ footer {
     aspect-ratio: 2 / 1;
   }
 
-  .gallery-grid { column-count: 3; column-gap: 24px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
   .about-teaser-inner {
     flex-direction: row;
