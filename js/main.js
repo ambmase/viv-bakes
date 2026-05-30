@@ -38,23 +38,19 @@ const toggle = document.querySelector('.nav-toggle');
 const links = document.querySelector('.nav-links');
 
 if (toggle && links) {
+  const setOpen = (open) => {
+    toggle.classList.toggle('open', open);
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
+
   toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    links.classList.toggle('open');
+    setOpen(!toggle.classList.contains('open'));
   });
 
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      toggle.classList.remove('open');
-      links.classList.remove('open');
-    });
+    a.addEventListener('click', () => setOpen(false));
   });
-}
-
-// Hide sticky contact bar on contact page
-if (window.location.pathname.includes('contact')) {
-  const stickyBar = document.querySelector('.sticky-contact');
-  if (stickyBar) stickyBar.style.display = 'none';
 }
 
 // Hide sticky bar when scrolled to footer
@@ -64,11 +60,9 @@ const footer = document.querySelector('footer');
 if (stickyBar && footer) {
   const footerObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      stickyBar.style.opacity = e.isIntersecting ? '0' : '1';
-      stickyBar.style.pointerEvents = e.isIntersecting ? 'none' : 'auto';
+      stickyBar.classList.toggle('sticky-contact--hidden', e.isIntersecting);
     });
   }, { threshold: 0.1 });
 
   footerObserver.observe(footer);
-  stickyBar.style.transition = 'opacity 0.3s ease';
 }

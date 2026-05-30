@@ -6,7 +6,7 @@
   --color-bg: #FFF8F0;
   --color-surface: #FFF0EC;
   --color-text: #3D2C2E;
-  --color-text-muted: #8B7577;
+  --color-text-muted: #6F5A5C;
   --color-accent: #D4838F;
   --color-accent-hover: #c4707d;
   --color-lavender: #C5B3D4;
@@ -43,7 +43,9 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
    Base
    =========================== */
 
-html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 
 body {
   background-color: var(--color-bg);
@@ -310,30 +312,32 @@ nav {
 }
 
 /* Animate hero cards in */
-.js .hero-card {
-  opacity: 0;
-  transform: rotate(0deg) translateY(40px);
-  transition: opacity 0.6s var(--transition-smooth),
-              transform 0.7s var(--transition-bounce);
-}
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero-card {
+    opacity: 0;
+    transform: rotate(0deg) translateY(40px);
+    transition: opacity 0.6s var(--transition-smooth),
+                transform 0.7s var(--transition-bounce);
+  }
 
-.js .hero-card.visible {
-  opacity: 1;
-}
+  .js .hero-card.visible {
+    opacity: 1;
+  }
 
-.js .hero-card.visible:nth-child(1) {
-  transform: rotate(-5deg) translateX(-60px);
-  transition-delay: 0.15s;
-}
+  .js .hero-card.visible:nth-child(1) {
+    transform: rotate(-5deg) translateX(-60px);
+    transition-delay: 0.15s;
+  }
 
-.js .hero-card.visible:nth-child(2) {
-  transform: rotate(2deg) translateY(-16px);
-  transition-delay: 0.3s;
-}
+  .js .hero-card.visible:nth-child(2) {
+    transform: rotate(2deg) translateY(-16px);
+    transition-delay: 0.3s;
+  }
 
-.js .hero-card.visible:nth-child(3) {
-  transform: rotate(4deg) translateX(60px);
-  transition-delay: 0.45s;
+  .js .hero-card.visible:nth-child(3) {
+    transform: rotate(4deg) translateX(60px);
+    transition-delay: 0.45s;
+  }
 }
 
 /* ===========================
@@ -862,6 +866,12 @@ footer {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-top: 1px solid rgba(61, 44, 46, 0.08);
+  transition: opacity 0.3s ease;
+}
+
+.sticky-contact--hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .sticky-contact .btn {
@@ -874,21 +884,23 @@ footer {
    Fade-in on scroll
    =========================== */
 
-.js .fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s var(--transition-smooth),
-              transform 0.6s var(--transition-smooth);
-}
+@media (prefers-reduced-motion: no-preference) {
+  .js .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s var(--transition-smooth),
+                transform 0.6s var(--transition-smooth);
+  }
 
-.js .fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+  .js .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-.js .fade-in-delay-1 { transition-delay: 0.1s; }
-.js .fade-in-delay-2 { transition-delay: 0.2s; }
-.js .fade-in-delay-3 { transition-delay: 0.3s; }
+  .js .fade-in-delay-1 { transition-delay: 0.1s; }
+  .js .fade-in-delay-2 { transition-delay: 0.2s; }
+  .js .fade-in-delay-3 { transition-delay: 0.3s; }
+}
 
 /* ===========================
    Mobile Menu
@@ -1138,7 +1150,7 @@ footer {
    =========================== */
 
 @media (max-width: 899px) {
-  footer {
+  body:has(.sticky-contact) footer {
     padding-bottom: calc(28px + 64px + env(safe-area-inset-bottom, 0px));
   }
 }

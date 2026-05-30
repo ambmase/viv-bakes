@@ -20,12 +20,12 @@
   <nav aria-label="Main navigation">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Vivian Bakes</a>
-      <button class="nav-toggle" aria-label="Toggle menu">
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <ul class="nav-links">
+      <ul class="nav-links" id="primary-nav">
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -45,7 +45,7 @@
     <section class="about-page fade-in">
       <div class="about-page-inner">
         <div class="about-image">
-          <img src="images/portrait.webp" alt="Portrait of Vivian" width="960" height="1280" />
+          <img src="images/portrait.webp" alt="Portrait of Vivian" width="960" height="1280" fetchpriority="high" />
         </div>
         <div class="about-text">
           <p>
