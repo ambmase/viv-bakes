@@ -3,3 +3,6 @@ images/archive/
 images/tmp/
 .DS_Store
 *.DS_Store
+
+node_modules/
+.playwright-mcp/
