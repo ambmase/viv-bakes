@@ -1,0 +1,6 @@
+# The admin page and API are protected by Cloudflare Access, not by this file —
+# this only keeps them out of search results.
+User-agent: *
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /api/

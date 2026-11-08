@@ -38,6 +38,10 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 button { font: inherit; border: none; background: none; cursor: pointer; }
+/* The UA rule for [hidden] is a bare element selector, so any class that sets
+   `display` silently outranks it and the element stays on screen. Every
+   `hidden` toggle on the admin page depends on this line. */
+[hidden] { display: none !important; }
 
 /* ===========================
    Base
@@ -1152,5 +1156,640 @@ footer {
 @media (max-width: 899px) {
   body:has(.sticky-contact) footer {
     padding-bottom: calc(28px + 64px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* The way in for the two people who manage the site. Access blocks everyone
+   else at the edge, so this is a signpost, not a door. */
+.footer-manage {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+.footer-manage:hover {
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+/* ===========================
+   Admin page
+   =========================== */
+
+.admin-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 16px 88px;
+}
+
+/* The way out. The public pages carry a Manage link into here, and until this
+   existed the only way back was the browser's back button or retyping the URL
+   — which on a phone, after Add to Home Screen, means no way back at all.
+   Above the title rather than beside Sign out: two small links side by side on
+   a 390px screen either wrap or sit inside each other's 44px touch target. */
+.admin-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.admin-back:hover {
+  color: var(--color-accent);
+}
+
+.admin-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-header .section-title {
+  font-size: 1.75rem;
+  margin-bottom: 2px;
+}
+
+.admin-signed-in {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.admin-signout {
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: underline;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.admin-signout:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Two separate lines: a failure is not the same thing as a confirmation, and
+   the old page printed "Deleted …" in error red. */
+.admin-error,
+.admin-status {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.admin-error {
+  color: var(--color-accent-hover);
+  background: var(--color-blush);
+  border: 1px solid var(--color-accent);
+}
+
+.admin-status {
+  color: var(--color-text);
+  background: var(--color-lavender-light);
+  border: 1px solid var(--color-lavender);
+}
+
+.admin-error:empty,
+.admin-status:empty {
+  display: none;
+}
+
+.admin-upload {
+  margin-bottom: 24px;
+}
+
+/* ---- Picked files waiting for a description ---- */
+
+.upload-drafts-panel {
+  margin-bottom: 32px;
+  padding: 20px;
+  background: var(--color-lavender-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.upload-drafts-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.upload-drafts-hint {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-bottom: 16px;
+}
+
+.upload-drafts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.upload-draft {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 12px;
+  background: #fff;
+  border-radius: var(--radius-sm);
+}
+
+.upload-draft-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.upload-draft-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-draft-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.upload-draft-alt {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--color-text);
+  background: #fff;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+}
+
+.upload-draft-alt:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(212, 131, 143, 0.15);
+}
+
+.upload-draft-alt:disabled {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.upload-draft-note {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.upload-draft-note.is-error {
+  color: var(--color-accent-hover);
+  font-weight: 500;
+}
+
+.upload-draft-remove {
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+}
+
+.upload-draft-remove:hover {
+  color: var(--color-accent-hover);
+}
+
+.upload-drafts-panel .btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+  transform: none;
+}
+
+/* The two things this page manages. */
+.admin-views {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding: 4px;
+  background: var(--color-surface);
+  border-radius: 999px;
+  align-self: flex-start;
+  width: fit-content;
+}
+
+.admin-view {
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.admin-view.is-current {
+  background: #fff;
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
+}
+
+.admin-view:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.home-page-note {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  max-width: 60ch;
+}
+
+/* ---- The gallery, in order ---- */
+
+/* A portfolio, so the photographs get the room. Two across on a phone, up to
+   four on a wide screen; the controls sit on the image and the description
+   reads as a caption underneath. */
+.photo-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.photo-list:empty {
+  display: none;
+}
+
+.photo-list-empty {
+  grid-column: 1 / -1;
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+}
+
+.photo-item {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.photo-item-frame {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--color-surface);
+  overflow: hidden;
+  /* A flex item's automatic minimum size is its content's, so a portrait
+     photograph would push the frame taller than the square and the tiles in
+     that row would stop matching. */
+  min-height: 0;
+  flex: 0 0 auto;
+}
+
+/* Taken out of flow so the photograph can never influence the frame's size:
+   the square is the frame's, and the image is cropped into it. */
+.photo-item-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Controls sit on the photograph. A translucent disc keeps them legible over
+   a dark cake and a white one alike. */
+.photo-item-overlay,
+.photo-item-handle {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 8px rgba(61, 44, 46, 0.18);
+  color: var(--color-text);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.photo-item-handle {
+  display: none;
+  top: 8px;
+  left: 8px;
+  cursor: grab;
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  /* Without this the browser takes the gesture and scrolls the page. */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.photo-item-handle:active {
+  cursor: grabbing;
+}
+
+.photo-item-star {
+  top: 8px;
+  right: 8px;
+  color: var(--color-text-muted);
+}
+
+.photo-item-star.is-on {
+  color: var(--color-gold);
+  background: #fff;
+}
+
+.photo-item-delete {
+  bottom: 8px;
+  right: 8px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.photo-item-delete:hover {
+  color: var(--color-accent-hover);
+}
+
+.photo-item-overlay:focus-visible,
+.photo-item-alt:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Reads as a caption; becomes a field when it is being written in. */
+.photo-item-alt {
+  width: 100%;
+  padding: 8px 10px;
+  font-family: var(--font-body);
+  /* Not below 16px: iOS zooms the whole page when a smaller field is focused. */
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  resize: none;
+  overflow: hidden;
+}
+
+.photo-item-alt:hover {
+  border-color: var(--color-border);
+}
+
+.photo-item-alt:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(212, 131, 143, 0.15);
+}
+
+.photo-item.is-deleted .photo-item-frame img {
+  opacity: 0.3;
+}
+
+.photo-item.is-deleted .photo-item-alt {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.photo-item-deleted-flag {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.photo-item.is-deleted .photo-item-delete {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* The tile under the finger. */
+.photo-item.is-dragging {
+  position: relative;
+  z-index: 10;
+  box-shadow: var(--shadow-lifted);
+  opacity: 0.95;
+}
+
+/* Arranging is a different job from describing: the descriptions go away and
+   the tiles shrink, so the whole gallery is a screen or two rather than a
+   dozen and nothing has to be dragged half a mile. */
+.photo-list.is-arranging {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.photo-list.is-reordering {
+  cursor: grabbing;
+}
+
+.photo-list.is-arranging .photo-item-alt,
+.photo-list.is-arranging .photo-item-star,
+.photo-list.is-arranging .photo-item-delete {
+  display: none;
+}
+
+/* The whole tile is the grab area while arranging — no small target to hit. */
+.photo-list.is-arranging .photo-item-handle {
+  display: flex;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: transparent;
+}
+
+/* Where it will land. */
+.drop-indicator {
+  border-radius: var(--radius);
+  border: 2px dashed var(--color-accent);
+  background: var(--color-blush);
+  min-height: 60px;
+}
+
+/* While a drag is in progress nothing else should be selectable: a finger or
+   mouse that strays off the handle would otherwise start selecting captions. */
+body.is-dragging-row {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* The bar shown while arranging. Fixed, not sticky: it sits after a list that
+   can be several screens tall, and sticky only holds an element in view once
+   you have scrolled down to it — it never brings one up from the bottom of the
+   page. While arranging it has to be on screen wherever you are. */
+.reorder-bar {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16px;
+  z-index: 20;
+  width: calc(100% - 32px);
+  max-width: calc(var(--max-width) - 48px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 12px 12px 20px;
+  background: var(--color-text);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lifted);
+}
+
+.reorder-bar-text {
+  flex: 1 1 auto;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-bg);
+}
+
+.reorder-bar-undo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+  text-decoration: underline;
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.reorder-bar-undo:hover {
+  color: #fff;
+}
+
+.reorder-bar .btn {
+  padding: 12px 24px;
+}
+
+/* On the dark bar a faded button reads as broken; this one reads as waiting. */
+.reorder-bar .btn:disabled {
+  background: transparent;
+  border: 1px solid var(--color-text-muted);
+  color: var(--color-text-muted);
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+.admin-upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  min-height: 52px;
+}
+
+/* ---- Pages ---- */
+
+.photo-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.photo-pager-button {
+  min-height: 44px;
+  padding: 0 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.photo-pager-button:hover:not(:disabled) {
+  background: var(--color-blush);
+  border-color: var(--color-accent);
+}
+
+.photo-pager-button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.photo-pager-button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.photo-pager-status {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 640px) {
+  .admin-header {
+    align-items: center;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+
+  .admin-header .section-title {
+    font-size: 2rem;
+  }
+
+  .admin-page {
+    padding: 24px 24px 88px;
+  }
+
+  .photo-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .photo-list.is-arranging {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .photo-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .photo-list.is-arranging {
+    grid-template-columns: repeat(6, 1fr);
   }
 }

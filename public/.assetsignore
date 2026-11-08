@@ -1,0 +1,9 @@
+# Wrangler uploads every file under the assets directory and does not read
+# .gitignore, so anything ignored there has to be repeated here. Without this,
+# files kept out of git as private still ship to the edge. Today the preview
+# Access app covers the whole workers.dev hostname so nothing is reachable, but
+# the production app is path-scoped to /admin.html and /api/*, which would make
+# every file below publicly fetchable on vivianbakes.com after the cutover.
+.DS_Store
+images/archive/
+images/tmp/

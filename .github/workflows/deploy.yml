@@ -1,0 +1,49 @@
+# Deploys the Worker that serves vivianbakes.com on every push to main.
+#
+# Needs two repository secrets:
+#   CLOUDFLARE_API_TOKEN  — "Edit Cloudflare Workers" template plus
+#                           Account → D1 → Read. The template has no D1
+#                           permission, and verify:bindings runs `d1 list`.
+#   CLOUDFLARE_ACCOUNT_ID — wrangler needs it alongside the token in CI.
+#
+# The custom domain is managed in the dashboard. wrangler.jsonc has no
+# "routes" key, which is what makes deploys leave it alone — adding one
+# without vivianbakes.com in it would detach the live site on the next push.
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Two quick pushes must not race each other to production.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm test
+
+      # A mistranscribed database id passes every test and fails only here.
+      - run: npm run verify:bindings
+
+      - run: npx wrangler deploy
