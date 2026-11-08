@@ -62,7 +62,7 @@ it("renders photos from D1 into the portfolio gallery", async () => {
   });
 
   const response = await exports.default.fetch(
-    "https://vivianbakes.com/portfolio.html",
+    "https://vivianbakes.com/portfolio",
   );
   const html = await response.text();
 
@@ -91,7 +91,7 @@ it("gives exactly one rendered gallery item fetchpriority", async () => {
   }
 
   const response = await exports.default.fetch(
-    "https://vivianbakes.com/portfolio.html",
+    "https://vivianbakes.com/portfolio",
   );
   const html = await response.text();
 
@@ -131,7 +131,7 @@ it("renders only featured photos into the home bento grid", async () => {
 
 it("renders an empty grid rather than failing when there are no photos", async () => {
   const response = await exports.default.fetch(
-    "https://vivianbakes.com/portfolio.html",
+    "https://vivianbakes.com/portfolio",
   );
   expect(response.status).toBe(200);
   expect(await response.text()).toContain('class="gallery-grid"');
@@ -139,7 +139,7 @@ it("renders an empty grid rather than failing when there are no photos", async (
 
 it("leaves other pages untouched", async () => {
   const response = await exports.default.fetch(
-    "https://vivianbakes.com/about.html",
+    "https://vivianbakes.com/about",
   );
   expect(response.status).toBe(200);
   expect(await response.text()).toContain("Vivian Bakes");

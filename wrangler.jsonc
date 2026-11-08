@@ -11,12 +11,11 @@
   "assets": {
     "directory": "./public/",
     "binding": "ASSETS",
-    // Every .html page is listed, including the ones with no gallery to
-    // inject. The default html_handling 307-redirects /x.html to /x, and it
-    // does so *before* the Worker runs unless the path is claimed here — so a
-    // page left off this list redirects no matter what src/index.ts does.
-    // assetRequest() there turns the redirect into a 200; this is what gives
-    // it the chance. See the comment on that function.
+    // Every .html page is listed so the Worker, not the asset service, answers
+    // it. The asset service's default html_handling redirects /x.html to /x
+    // with a 307 — temporary — *before* the Worker runs unless the path is
+    // claimed here. The Worker sends a 301 instead (see cleanPath() in
+    // src/index.ts), which is what moves search ranking to the clean address.
     //
     // The test pool ignores html_handling entirely, so nothing here is covered
     // by `npm test`. `npm run verify:routes` is what checks it.

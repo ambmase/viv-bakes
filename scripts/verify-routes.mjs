@@ -11,8 +11,9 @@
 //   node scripts/verify-routes.mjs --url https://vivianbakes.com
 //   ... --expect-admin-protected               /admin* must NOT be reachable
 //
-// The last form is the post-cutover check: public pages answer directly, the
-// gallery is really coming from D1, and the admin is behind Access.
+// The last form is the live-site check: clean addresses answer directly, the
+// old .html addresses redirect permanently to them, the gallery is really
+// coming from D1, and the admin is behind Access.
 //
 // Exit codes: 0 all as expected, 1 something is wrong, 2 the server never came up.
 
@@ -25,24 +26,22 @@ const PORT = 8788;
 const base = urlArg === -1 ? `http://127.0.0.1:${PORT}` : args[urlArg + 1];
 const spawnServer = urlArg === -1;
 
-// Every page, in both spellings. GitHub Pages serves both with a 200 today, and
-// every link on the site and in search results uses .html, so a redirect on
-// either spelling is a behaviour change on URLs that are already out there.
-const PAGES = [
-  "/",
-  "/index.html",
-  "/portfolio",
-  "/portfolio.html",
-  "/about",
-  "/about.html",
-  "/contact",
-  "/contact.html",
+// The canonical addresses. Each must answer directly, with no redirect.
+const PAGES = ["/", "/portfolio", "/about", "/contact"];
+// The .html spellings GitHub Pages served and search engines indexed. Each
+// must 301 — not the asset service's 307 — to its clean address. A 307 would
+// tell a search engine the old address is still the real one.
+const REDIRECTS = [
+  ["/index.html", "/"],
+  ["/portfolio.html", "/portfolio"],
+  ["/about.html", "/about"],
+  ["/contact.html", "/contact"],
 ];
 const ASSETS = ["/robots.txt", "/favicon.svg", "/css/style.css"];
 const ADMIN = ["/admin", "/admin.html"];
 // The gallery must come from D1, not from markup: these pages should carry
 // /media/ URLs and never the placeholder comment left in the HTML.
-const INJECTED = ["/", "/index.html", "/portfolio", "/portfolio.html"];
+const INJECTED = ["/", "/portfolio"];
 
 const failures = [];
 const lines = [];
@@ -91,13 +90,24 @@ try {
     } else check(false, path, `${status}`);
   }
 
+  for (const [path, target] of REDIRECTS) {
+    const { status, location } = await head(`${path}?q=1`);
+    const expected = `${base}${target}?q=1`;
+    const ok = status === 301 && location === expected;
+    check(ok, path, ok ? `301 to ${target}, query kept` : `${status} ${location} — expected 301 to ${expected}`);
+  }
+
   for (const path of ADMIN) {
     const { status, location } = await head(path);
     if (adminProtected) {
       const gated = status >= 300 && status < 400 && !location.startsWith(base);
       check(gated, path, gated ? `${status} to ${new URL(location).host} — behind Access` : `${status} ${location} — NOT protected`);
     } else {
-      check(status === 200, path, status === 200 ? "200" : `${status} ${location}`);
+      // Locally there is no Access: /admin answers, /admin.html redirects to it.
+      const ok = path === "/admin"
+        ? status === 200
+        : status === 301 && location === `${base}/admin`;
+      check(ok, path, ok ? (status === 200 ? "200" : "301 to /admin") : `${status} ${location}`);
     }
   }
 

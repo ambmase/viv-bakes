@@ -4,27 +4,20 @@ import { handleMedia } from "./routes/media";
 import type { Env } from "./types";
 
 /**
- * The URL to ask the asset service for.
+ * Where a `.html` URL lives now, or `null` if it is not one.
  *
- * Its default `html_handling` treats the extensionless path as canonical and
- * 307-redirects `/portfolio.html` to `/portfolio`. GitHub Pages serves both
- * directly, and every link on the site — and every URL a search engine has
- * indexed, since those links are what it crawled — spells it `.html`. Passing
- * the request through unchanged makes each of those a redirect, so the asset is
- * fetched under the spelling the service does not redirect, and the page is
- * returned under the spelling that was asked for.
+ * The site's canonical addresses are extensionless: `/portfolio`, not
+ * `/portfolio.html`. GitHub Pages served the `.html` spellings for years, so
+ * those are the URLs search engines indexed and people bookmarked. Each one gets
+ * a permanent redirect, which keeps the bookmark working and tells a search
+ * engine to move the page's ranking to the new address.
  *
- * `html_handling: "none"` is not the alternative: it stops `/` resolving to
- * index.html and 404s the extensionless `/about` and `/contact`, which work
- * today. This keeps both spellings answering with 200, exactly as now.
+ * It has to be 301. The asset service would redirect these by itself, but with
+ * a 307 — temporary — which tells a search engine to keep the old address.
  */
-function assetRequest(request: Request, pathname: string): Request {
-  if (!pathname.endsWith(".html")) return request;
-
-  const url = new URL(request.url);
-  url.pathname =
-    pathname === "/index.html" ? "/" : pathname.slice(0, -".html".length);
-  return new Request(url, request);
+function cleanPath(pathname: string): string | null {
+  if (!pathname.endsWith(".html")) return null;
+  return pathname === "/index.html" ? "/" : pathname.slice(0, -".html".length);
 }
 
 export default {
@@ -39,12 +32,19 @@ export default {
       return handleMedia(env, pathname);
     }
 
-    const assetResponse = await env.ASSETS.fetch(assetRequest(request, pathname));
+    const clean = cleanPath(pathname);
+    if (clean !== null) {
+      const url = new URL(request.url);
+      url.pathname = clean;
+      return Response.redirect(url.toString(), 301);
+    }
 
-    if (pathname === "/" || pathname === "/index.html") {
+    const assetResponse = await env.ASSETS.fetch(request);
+
+    if (pathname === "/") {
       return renderHome(assetResponse, env);
     }
-    if (pathname === "/portfolio" || pathname === "/portfolio.html") {
+    if (pathname === "/portfolio") {
       return renderPortfolio(assetResponse, env);
     }
 
