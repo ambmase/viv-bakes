@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Manage Portfolio — Vivian Bakes</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <meta name="apple-mobile-web-app-title" content="Manage" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,400;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+  <main id="content" class="admin-page">
+
+    <a href="/" class="admin-back"><span aria-hidden="true">&larr;</span> Back to the site</a>
+
+    <header class="admin-header">
+      <div>
+        <h1 class="section-title">Manage Portfolio</h1>
+        <p class="admin-signed-in">Signed in as <span id="signed-in-email">…</span></p>
+      </div>
+      <a href="/cdn-cgi/access/logout" class="admin-signout">Sign out</a>
+    </header>
+
+    <nav class="admin-views" aria-label="What to manage">
+      <button type="button" id="view-all" class="admin-view is-current" aria-pressed="true">
+        All photos
+      </button>
+      <button type="button" id="view-home" class="admin-view" aria-pressed="false">
+        Home page
+      </button>
+    </nav>
+
+    <p id="home-page-note" class="home-page-note" hidden></p>
+
+    <div class="admin-upload">
+      <label for="admin-file-input" class="btn">Add photos</label>
+      <input type="file" id="admin-file-input" accept="image/*" multiple hidden />
+      <button type="button" id="arrange-photos" class="btn btn--outline">
+        Arrange
+      </button>
+      <p id="admin-error" class="admin-error" role="alert"></p>
+      <p id="admin-status" class="admin-status" role="status"></p>
+    </div>
+
+    <section id="upload-drafts-panel" class="upload-drafts-panel" hidden>
+      <h2 class="upload-drafts-title">Describe each photo</h2>
+      <p class="upload-drafts-hint">
+        A sentence saying what is in the picture. It is read aloud to people
+        using a screen reader, and it is what search engines see.
+      </p>
+      <ul id="upload-drafts" class="upload-drafts"></ul>
+      <button type="button" id="upload-submit" class="btn" disabled>
+        Add photos
+      </button>
+    </section>
+
+    <ul id="photo-list" class="photo-list"></ul>
+
+    <div id="reorder-bar" class="reorder-bar" hidden role="group" aria-label="Unsaved order">
+      <p class="reorder-bar-text">Drag a photo by its handle to move it.</p>
+      <button type="button" id="reorder-undo" class="reorder-bar-undo">Cancel</button>
+      <button type="button" id="reorder-save" class="btn">Save changes</button>
+    </div>
+
+    <nav id="photo-pager" class="photo-pager" aria-label="Photo pages" hidden>
+      <button type="button" id="pager-prev" class="photo-pager-button">
+        Previous
+      </button>
+      <p id="pager-status" class="photo-pager-status"></p>
+      <button type="button" id="pager-next" class="photo-pager-button">
+        Next
+      </button>
+    </nav>
+
+  </main>
+
+  <script type="module" src="js/admin/app.js"></script>
+
+</body>
+</html>

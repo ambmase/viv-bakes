@@ -1,0 +1,62 @@
+{
+  "name": "vivbakes",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-29",
+  // The live site is vivianbakes.com (a custom domain set in the dashboard, not
+  // here: with no "routes" key, deploys leave dashboard domains alone). Both
+  // workers.dev hostnames are off so there is no second door into the same D1
+  // and R2 — the preview Access app covered only the exact workers.dev host.
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./public/",
+    "binding": "ASSETS",
+    // Every .html page is listed, including the ones with no gallery to
+    // inject. The default html_handling 307-redirects /x.html to /x, and it
+    // does so *before* the Worker runs unless the path is claimed here — so a
+    // page left off this list redirects no matter what src/index.ts does.
+    // assetRequest() there turns the redirect into a 200; this is what gives
+    // it the chance. See the comment on that function.
+    //
+    // The test pool ignores html_handling entirely, so nothing here is covered
+    // by `npm test`. `npm run verify:routes` is what checks it.
+    "run_worker_first": [
+      "/",
+      "/index.html",
+      "/portfolio",
+      "/portfolio.html",
+      "/about.html",
+      "/contact.html",
+      "/admin.html",
+      "/api/*",
+      "/media/*"
+    ]
+  },
+  // Cloudflare Access verification. These two are identifiers, not
+  // credentials, so they are safe in a public repo. The allow-list of admin
+  // email addresses is deliberately NOT here — it is set with
+  // `wrangler secret put ADMIN_EMAILS` so personal addresses stay out of git.
+  // All three must be present or src/auth/access.ts fails closed and refuses
+  // every request, which is the intended behaviour for a misconfiguration.
+  "vars": {
+    "ACCESS_TEAM_DOMAIN": "https://masonlabs.cloudflareaccess.com",
+    "ACCESS_AUD": "f9ca5422231303f6b69f1a18079460cbe7d229d0ee6584b7299ad29d1d213e1a"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "vivbakes",
+      "database_id": "f2b8ca31-84fa-409f-ad7a-a14a32d2f8d7",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "PHOTOS",
+      "bucket_name": "vivbakes-photos"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Portfolio — Vivian Bakes</title>
+  <meta name="description" content="Browse the full portfolio of custom cakes, cupcakes, and confections by Vivian." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,400;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+</head>
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+  <!-- Navigation -->
+  <nav aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Vivian Bakes</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="content">
+
+    <!-- Portfolio Header -->
+    <header class="page-header fade-in">
+      <p class="section-label">Portfolio</p>
+      <h1 class="section-title">The Work</h1>
+      <p class="page-subtitle">A selection of custom cakes, cupcakes, and confections.</p>
+    </header>
+
+    <!-- Full Gallery -->
+    <section id="portfolio-gallery" class="fade-in">
+      <div class="gallery-grid">
+        <!-- Photos are injected at the edge from D1. Manage them at /admin.html -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> Vivian Bakes.</p>
+    <a href="/admin.html" class="footer-manage" rel="nofollow">Manage</a>
+  </footer>
+
+  <!-- Sticky contact bar (mobile) -->
+  <div class="sticky-contact" aria-label="Quick contact">
+    <a href="contact.html" class="btn">Get in Touch</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+</body>
+</html>
