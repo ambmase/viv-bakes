@@ -137,7 +137,7 @@ describe("/api/* guard", () => {
     // (unauthorized) proves the guard never ran on this path.
     expect(mediaResponse.status).toBe(404);
 
-    const pageResponse = await fetchApi("/about.html");
+    const pageResponse = await fetchApi("/about");
     expect(pageResponse.status).toBe(200);
   });
 });
